@@ -17,4 +17,10 @@ folgendem Command startest:
 `AttackeKeyloggerZIP.zip` --> Die Attacke (z.B. per Mail)  
 
 ## .py zu .exe kompilieren
-Du kannst im Powershell eine .py Datei in eine .exe machen indem du 
+Du kannst im Powershell eine .py Datei in eine .exe machen indem du folgenden Command eingibst:  
+`pyinstaller --clean -w -F keyloggerTEST1.py --icon=icon.ico`  
+-w → Windowed Mode (kein sichtbares Terminal-Fenster)
+-F → Single File (eine einzelne .exe-Datei)
+keylogger.py → Python-Skript, das kompiliert wird
+--icon=icon.ico → setzt ein benutzerdefiniertes Icon für die .exe-Datei
+
