@@ -14,4 +14,7 @@ folgendem Command startest:
 `keylogger.exe` --> Das eigentliche Programm das gestartet wird.  
 `keylogger.py` --> Das Keylogger Programm  
 `keylogger_Entschlüsselung.py` --> Das entschlüsselungs Programm  
-`AttackeKeyloggerZIP.zip` --> Die Attacke (z.B. per Mail)
+`AttackeKeyloggerZIP.zip` --> Die Attacke (z.B. per Mail)  
+
+## .py zu .exe kompilieren
+Du kannst im Powershell eine .py Datei in eine .exe machen indem du 
