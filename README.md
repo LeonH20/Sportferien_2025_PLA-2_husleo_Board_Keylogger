@@ -31,3 +31,8 @@ gestartet werden muss oder so etwaws tarnen, wozu man auch meistens
 das Logo ändert. Das Script kann man in zwei Wegen beenden:  
 1. Den Laptop Herunterfahren
 2. Taskmanager --> Kelogger deaktivieren und dann löschen
+
+## Wie kann man sich davor schützen?
+1. Antivirenschutz an haben
+2. Nie Dateien Zugriff auf Laptop geben (Unerkannte Herausgeber)
+3. Spam E-Mails meistens ignorieren
