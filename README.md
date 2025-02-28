@@ -29,7 +29,7 @@ In diesem Script musst du ihn in eine verschlüsslte Zip-Datei stecken,
 damit du diese per Outlook sendet kannst, da es ansonsten als Virus  
 erkannt wird. Dies macht man mit 7zip und danach so:  
 `Rechtsklick Ordner --> 7zip --> Zu einem Archiv hinzufügen… --> Archivformat: zip --> Passwort setzen --> OK`  
-![7zip](./Zip1.png)
+![image](https://github.com/user-attachments/assets/8677fc7b-c5c0-4bea-8ec6-7ede3ea21f73)
 
 ## Wie starte/beendet sich das Script?
 Das Script startet nicht Automatisch das es ein Virus ist, jedoch  
