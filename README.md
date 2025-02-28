@@ -28,4 +28,6 @@ keylogger.py → Python-Skript, das kompiliert wird
 Das Script startet nicht Automatisch das es ein Virus ist, jedoch  
 kann man die Leute tricken indem man es als irgndein System welches  
 gestartet werden muss oder so etwaws tarnen, wozu man auch meistens  
-das Logo ändert.
+das Logo ändert. Das Script kann man in zwei Wegen beenden:  
+1. Den Laptop Herunterfahren
+2. Taskmanager --> Kelogger deaktivieren und dann löschen
