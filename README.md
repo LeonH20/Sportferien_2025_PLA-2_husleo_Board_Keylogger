@@ -24,3 +24,8 @@ Du kannst im Powershell eine .py Datei in eine .exe machen indem du folgenden Co
 keylogger.py → Python-Skript, das kompiliert wird  
 --icon=icon.ico → setzt ein benutzerdefiniertes Icon für die .exe-Datei
 
+## Wie starte/beendet sich das Script?
+Das Script startet nicht Automatisch das es ein Virus ist, jedoch  
+kann man die Leute tricken indem man es als irgndein System welches  
+gestartet werden muss oder so etwaws tarnen, wozu man auch meistens  
+das Logo ändert.
