@@ -28,7 +28,8 @@ keylogger.py → Python-Skript, das kompiliert wird
 In diesem Script musst du ihn in eine verschlüsslte Zip-Datei stecken,  
 damit du diese per Outlook sendet kannst, da es ansonsten als Virus  
 erkannt wird. Dies macht man mit 7zip und danach so:  
-`Rechtsklick Ordner --> 7zip --> Zu einem Archiv hinzufügen… --> Archivformat: zip --> Passwort setzen --> OK`
+`Rechtsklick Ordner --> 7zip --> Zu einem Archiv hinzufügen… --> Archivformat: zip --> Passwort setzen --> OK`  
+![7zip](./Zip1.png)
 
 ## Wie starte/beendet sich das Script?
 Das Script startet nicht Automatisch das es ein Virus ist, jedoch  
